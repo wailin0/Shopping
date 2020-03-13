@@ -180,9 +180,12 @@
     					</div>
 						
 						<div th:if="${activationSuccess}">
-  							<div class="alert alert-success" th:text="#{alert.logged.out}"></div>
+  							<div class="alert alert-success" th:text="${activationSuccess}"></div>
     					</div>
-						
+    					
+						<div th:if="${registerSuccess}">
+  							<div class="alert alert-success" th:text="${registerSuccess}"></div>
+    					</div>
                     
                         <h2>Login</h2>
                         <form action="login" method="post">

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wlh.service.UserService;
 import com.wlh.component.UserValidator;
@@ -54,7 +55,7 @@ public class RegisterController {
 	
 	//saving request for userinfo
 	@PostMapping("/register")
-	public String register(@ModelAttribute("userForm") User userForm,BindingResult bindingResult,HttpServletRequest request) {
+	public String register(@ModelAttribute("userForm") User userForm,BindingResult bindingResult,HttpServletRequest request, RedirectAttributes att) {
 		validator.validate(userForm, bindingResult);
 		
 		//if theres error while registering reload page
@@ -72,19 +73,25 @@ public class RegisterController {
 		SimpleMailMessage email = verificationMailSender.confirmationMail(appUrl, userForm);  //get email contents from VerificationMailSender class
 		mailSender.send(email);            //send verification mail to user
 		
+		att.addFlashAttribute("registerSuccess", "Register sucessful,please check your email for activiation link");
 		return "redirect:/login";    //if register success redirect to login page
 	}
 	
 	
+	@GetMapping("/badRequest")
+	public String BadRequest() {
+		return "badRequest";
+	}
+	
 	
 	//for verifying email
 	@GetMapping("/confirmEmail")
-	public String comfirmEmail(Model model,@RequestParam("token") String token) {
+	public String comfirmEmail(@RequestParam("token") String token,RedirectAttributes att) {
 		Token verificationToken = tokenService.getToken(token);
 		
 		//check if token is valid or not
 		if(verificationToken == null) {
-			model.addAttribute("message","Invalid token");
+			att.addFlashAttribute("invalidToken", "invalid token");
 			return "redirect:/badRequest";
 		}
 		
@@ -92,15 +99,16 @@ public class RegisterController {
 		User user = verificationToken.getUser();
 		Calendar calender = Calendar.getInstance();
 		if(verificationToken.getExpireDate().getTime()-calender.getTime().getTime()<=0) {
-			model.addAttribute("message","Token have been expired");
-			return "redirect:/access-denied";
+			att.addFlashAttribute("expiredToken","Token have been expired");
+			return "redirect:/badRequest";
 		}
 		
 		//enable user if above 2 conditions are false
 		user.setEnabled(true);
 		userService.enableUser(user);
 		
-		model.addAttribute("activationSuccess","Your account has been activated!");
+		//redirect with success messages
+		att.addFlashAttribute("activationSuccess","Your account has been successfully activated!");
 		return "redirect:/login";
 	}
 	

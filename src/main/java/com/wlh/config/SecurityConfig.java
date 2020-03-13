@@ -5,8 +5,10 @@ package com.wlh.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -39,8 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
 		.antMatchers("/","/home","/index","/register","/faq","/shop").permitAll()  //pages accessible by everyone
-		.antMatchers("/user/**").hasRole("USER")   //for user pages
-		.antMatchers("/admin/**").hasRole("ADMIN")  //for admin pages
+		.antMatchers("/user/**").hasRole("USER")
 		.and()         //method chaining    
 		.formLogin().loginPage("/login").permitAll()    
 		.and()
@@ -53,5 +54,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.rememberMeCookieName("shopping-remember-me")
 		.tokenValiditySeconds(86400);   //time before cookie expire
 	}
+	
+	@Bean
+	public AuthenticationManager customAuthenticationManager() throws Exception{
+		return authenticationManager();
+	}
+
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/css/**","/js/**","/fonts/**","/img/**");
+		
+	}
+	
 	
 }

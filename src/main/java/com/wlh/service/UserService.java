@@ -3,6 +3,7 @@
 
 package com.wlh.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,10 @@ public class UserService {
 
 	
 	public void registerUser(User user) {
+		
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setEnabled(false);
+		user.setRole("USER");
 		userRepo.save(user);	
 	}
 

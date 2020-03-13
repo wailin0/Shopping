@@ -3,19 +3,26 @@
 package com.wlh.model;
 
 
+
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 @Table(name="users")
 public class User {
-	
 
+	
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name="id", nullable = false, updatable = false)
@@ -28,8 +35,14 @@ public class User {
 		private String phone;
 		private String address;
 		private boolean enabled;
+		private String role;
+		
 
 		
+		
+		public boolean isEnabled() {
+			return enabled;
+		}
 		
 		public Long getId() {
 			return id;
@@ -79,14 +92,15 @@ public class User {
 			this.address = address;
 		}
 
-
-		public boolean isEnabled() {
-			return enabled;
-		}
-
 		public void setEnabled(boolean enabled) {
 			this.enabled = enabled;
 		}
-		
 
+		public String getRole() {
+			return role;
+		}
+
+		public void setRole(String role) {
+			this.role = role;
+		}
 }
