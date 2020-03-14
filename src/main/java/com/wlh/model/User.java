@@ -3,19 +3,12 @@
 package com.wlh.model;
 
 
-
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -30,10 +23,9 @@ public class User {
 		private String username;
 		private String password;
 		
-		@Column(name="email", nullable = false, updatable = false)
+		@Column(name="email",unique = true, nullable = false, updatable = false)
 		private String email;
 		private String phone;
-		private String address;
 		private boolean enabled;
 		private String role;
 		
@@ -82,14 +74,6 @@ public class User {
 
 		public void setPhone(String phone) {
 			this.phone = phone;
-		}
-
-		public String getAddress() {
-			return address;
-		}
-
-		public void setAddress(String address) {
-			this.address = address;
 		}
 
 		public void setEnabled(boolean enabled) {

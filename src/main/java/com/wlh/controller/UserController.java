@@ -9,7 +9,11 @@ public class UserController {
 	@GetMapping({"/user","/user/account"})
 	public String account() {
 		return "user/account";
-		
+	}
+	
+	@GetMapping("/user/security")
+	public String security() {
+		return "user/security";
 	}
 
 }

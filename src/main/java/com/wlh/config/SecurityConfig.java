@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/","/home","/index","/register","/faq","/shop").permitAll()  //pages accessible by everyone
 		.antMatchers("/user/**").hasRole("USER")
 		.and()         //method chaining    
-		.formLogin().loginPage("/login").permitAll()    
+		.formLogin().loginPage("/login").usernameParameter("email").permitAll()    
 		.and()
 		.logout()
 		.invalidateHttpSession(true).clearAuthentication(true).deleteCookies("remember-me")  //when user logout delete every cookie and session
@@ -61,11 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**","/js/**","/fonts/**","/img/**");
-		
-	}
 	
 	
 }

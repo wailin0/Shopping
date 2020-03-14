@@ -31,7 +31,6 @@ public class UserValidator implements Validator {
 		 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "error.username.empty");
 	     ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "error.email.empty");
 	     ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "error.password.empty");
-		 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "error.address.empty");
 		 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "error.phone.empty");
 
 	        // Username must have from 4 characters to 32
@@ -40,10 +39,6 @@ public class UserValidator implements Validator {
 	        }
 	        if(user.getUsername().length() > 32){
 	            errors.rejectValue("username","register.error.username.more.than.32");
-	        }
-	        //Username can't be duplicated
-	        if (userService.findByUsername(user.getUsername()) != null) {
-	            errors.rejectValue("username", "register.error.duplicated.username");
 	        }
 	        //Email can't be duplicated
 	        if (userService.findByEmail(user.getEmail()) != null){
