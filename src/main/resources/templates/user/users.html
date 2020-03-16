@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fashi | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/mystyle.css" type="text/css">
+</head>
+	<title>Spring Boot AJAX jQuery CRUD</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<style>
+		.modal p { margin: 1em 0; }
+		
+		.add_form.modal {
+		  border-radius: 0;
+		  line-height: 18px;
+		  padding: 0;
+		  font-family: "Lucida Grande", Verdana, sans-serif;
+		}
+
+		.add_form.modal p { padding: 20px 30px; border-bottom: 1px solid #ddd; margin: 0;
+		  background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #eee),color-stop(1, #fff));
+		  overflow: hidden;
+		}
+		.add_form.modal p:last-child { border: none; }
+		.add_form.modal p label { float: left; font-weight: bold; color: #333; font-size: 13px; width: 110px; line-height: 22px; }
+		.add_form.modal p input[type="text"],
+		.add_form.modal p input[type="submit"]		{
+		  font: normal 12px/18px "Lucida Grande", Verdana;
+		  padding: 3px;
+		  border: 1px solid #ddd;
+		  width: 200px;
+		}
+		
+		#msg {
+		  margin: 10px;
+		  padding: 30px;
+		  color: #fff;
+		  font-size: 18px;
+		  font-weight: bold;
+		  background: -moz-linear-gradient(top, #2e5764, #1e3d47);
+		  background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #1e3d47),color-stop(1, #2e5764));
+		}
+	</style>
+	
+	
+	
+
+
+</head>
+<body>
+
+
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-9">
+				<table class="table table-striped">
+				  <thead>
+				    <tr>
+				      <th scope="col">Id</th>
+				      <th scope="col">İsim</th>
+				      <th scope="col">Yaş</th>
+				      <th scope="col">Kitap</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+						
+				  </tbody>
+				</table>
+			</div>
+			<div class="col-3">
+				<div class="form-group form-vales">
+					<input id="name" class="form-control" placeholder="İsim">
+					<input id="age" class="form-control" placeholder="Yaş">
+					<input id="book" class="form-control" placeholder="Kitap">
+					<button id="save" type="button" class="btn btn-info">Kaydet</button>
+					<button id="update" type="button" class="btn btn-success">Güncelle</button>
+					<div class="alert" role="alert">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+    <!-- Js Plugins -->
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

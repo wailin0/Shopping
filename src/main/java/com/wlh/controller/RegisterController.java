@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.wlh.service.UserService;
 import com.wlh.component.UserValidator;
 import com.wlh.component.VerificationMailSender;
-import com.wlh.model.User;
+import com.wlh.model.Users;
 import com.wlh.model.Token;
 import com.wlh.service.TokenService;
 
@@ -47,7 +47,7 @@ public class RegisterController {
 	//for getting register page
 	@GetMapping("/register")
 	public String regster(Model model) {
-		model.addAttribute("userForm", new User());
+		model.addAttribute("userForm", new Users());
 		
 		return "register";
 	}
@@ -55,7 +55,7 @@ public class RegisterController {
 	
 	//saving request for userinfo
 	@PostMapping("/register")
-	public String register(@ModelAttribute("userForm") User userForm,BindingResult bindingResult,HttpServletRequest request, RedirectAttributes att) {
+	public String register(@ModelAttribute("userForm") Users userForm,BindingResult bindingResult,HttpServletRequest request, RedirectAttributes att) {
 		validator.validate(userForm, bindingResult);
 		
 		//if theres error while registering reload page
@@ -96,7 +96,7 @@ public class RegisterController {
 		}
 		
 		//check if token was expired or not
-		User user = verificationToken.getUser();
+		Users user = verificationToken.getUser();
 		Calendar calender = Calendar.getInstance();
 		if(verificationToken.getExpireDate().getTime()-calender.getTime().getTime()<=0) {
 			att.addFlashAttribute("expiredToken","Token have been expired");

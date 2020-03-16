@@ -4,11 +4,14 @@
 package com.wlh.service;
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.wlh.model.User;
+import com.wlh.model.Users;
 import com.wlh.repository.UserRepository;
 
 @Service
@@ -21,7 +24,7 @@ public class UserService {
 	private BCryptPasswordEncoder encoder;
 
 	
-	public void registerUser(User user) {
+	public void registerUser(Users user) {
 		
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setEnabled(false);
@@ -29,18 +32,37 @@ public class UserService {
 		userRepo.save(user);	
 	}
 
-	public void enableUser(User user) {
+	public void enableUser(Users user) {
 		userRepo.save(user);
 	}
 	
-	public User findByUsername(String username) {
+
+	public Users findByUsername(String username) {
 		return userRepo.findByUsername(username);
 	}
 
 	
-	public User findByEmail(String email) {
-		// TODO Auto-generated method stub
+	public Users findByEmail(String email) {
 		return userRepo.findByEmail(email);
+	}
+
+	public Users findById(Long id) {
+		return userRepo.findById(id).get();
+	}
+	
+	
+	public void deleteUser(Long id) {
+		userRepo.deleteById(id);
+	}
+
+	public List<Users> findAll() {
+		// TODO Auto-generated method stub
+		return userRepo.findAll();
+	}
+
+	public Users save(Users user) {
+		// TODO Auto-generated method stub
+		return userRepo.save(user);
 	}
 
 	

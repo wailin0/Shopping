@@ -3,7 +3,7 @@ package com.wlh.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wlh.model.User;
+import com.wlh.model.Users;
 import com.wlh.model.Token;
 import com.wlh.repository.TokenRepository;
 
@@ -17,7 +17,7 @@ public class VerificationService {
 		return tokenRepo.findByToken(comfirmationToken);
 	}
 	
-	public Token findByUser(User user) {
+	public Token findByUser(Users user) {
 		return tokenRepo.findByUser(user);
 	
 	}

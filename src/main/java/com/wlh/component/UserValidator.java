@@ -10,7 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.wlh.model.User;
+import com.wlh.model.Users;
 import com.wlh.service.UserService;
 
 @Component
@@ -21,12 +21,12 @@ public class UserValidator implements Validator {
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return User.class.equals(clazz);
+		return Users.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		User user = (User) target;
+		Users user = (Users) target;
 		
 		 ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "error.username.empty");
 	     ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "error.email.empty");

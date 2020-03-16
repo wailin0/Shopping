@@ -5,7 +5,7 @@ package com.wlh.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wlh.model.User;
+import com.wlh.model.Users;
 import com.wlh.model.Token;
 import com.wlh.repository.TokenRepository;
 
@@ -16,7 +16,7 @@ public class TokenService {
 	private TokenRepository tokenRepo;
 	
 	
-	public void createMailConfirmationToken(User user, String token) {
+	public void createMailConfirmationToken(Users user, String token) {
 		Token myToken = new Token(token,user);
 		tokenRepo.save(myToken);
 	}

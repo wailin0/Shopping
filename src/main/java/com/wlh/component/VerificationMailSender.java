@@ -6,7 +6,7 @@ package com.wlh.component;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
-import com.wlh.model.User;
+import com.wlh.model.Users;
 
 
 @Component
@@ -14,7 +14,7 @@ public class VerificationMailSender {
 	
 
 	
-	public SimpleMailMessage confirmationMail(String link,User user ) {
+	public SimpleMailMessage confirmationMail(String link,Users user ) {
 		
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmail());

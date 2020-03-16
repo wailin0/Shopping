@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.wlh.model.User;
+import com.wlh.model.Users;
 
 @Entity
 public class Token {
@@ -20,15 +20,15 @@ public class Token {
 	private static final int Expiration = 60*24;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 
 	private String token;
 	
-	@OneToOne(targetEntity = User.class,fetch = FetchType.EAGER)
+	@OneToOne(targetEntity = Users.class,fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false, name = "user_id")
-	private User user;
+	private Users user;
 	
 	private Date expireDate;
 
@@ -46,7 +46,7 @@ public class Token {
 	        super();
 	    }
 
-	   public Token(String token, User user) {
+	   public Token(String token, Users user) {
 	        super();
 
 	        this.token = token;
@@ -86,12 +86,12 @@ public class Token {
 	}
 
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
