@@ -27,15 +27,7 @@ public class HomeController {
 //        return "not yet ttttttttttttttttt";
 //    }
 //    
-    @GetMapping({"/user","/user/account"})
-	public String account() {
-		return "user/account";
-	}
-    
-    @GetMapping("/users")
-   	public String userInfo() {
-   		return "users";
-   	}
+  
     
     @GetMapping("/contact")
     public String about(){
