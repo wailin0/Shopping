@@ -13,7 +13,7 @@ public class HomeController {
 	
     @GetMapping("/shop")
     public String store(){
-        return "shop";
+        return "shop/shop";
     }
     
     @GetMapping("/faq")

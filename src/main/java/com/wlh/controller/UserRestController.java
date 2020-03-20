@@ -24,28 +24,34 @@ public class UserRestController {
 	private UserRepository userRepo;
 
 	
+	//get current login user info
 	@GetMapping("/info")
 	public Users getUserList(Principal principal) { 
 	return userRepo.findByEmail(principal.getName());
 	}
 
+	
+	//save users
 	@PostMapping("/info")
     public Users createOrSaveUser(@RequestBody Users user) {
         return userRepo.save(user);
     }
 	
+	//find all registered users (for testing only)
 	@GetMapping("/all")
 	public  List<Users> getAllUser() {
 		List<Users> user = userRepo.findAll();
 		return user;
 	}
 	
+	//get a user by id
 	@GetMapping("/info/{id}")
 	public  Users getUser(@PathVariable Long id) {
 		Users user = userRepo.findById(id).get();
 		return user;
 	}
 
+	//update user details
 	@PutMapping("/info/{id}")
 	public Users UpdateUser(@RequestBody Users updateuser,@PathVariable Long id) {
 	     Users user = userRepo.findById(id).get();
@@ -54,10 +60,10 @@ public class UserRestController {
             Users updatedUser = userRepo.save(user);   
             
             return updatedUser;
-            
-            
     }
 
+	
+	//delete user by id
 	@DeleteMapping("/info/{id}")
 	public void deleteCompany(@PathVariable Long id) {
 		userRepo.deleteById(id);
