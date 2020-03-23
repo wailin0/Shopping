@@ -16,6 +16,14 @@ public class HomeController {
         return "shop/shop";
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
     @GetMapping("/faq")
     public String faq(){
         return "faq";
