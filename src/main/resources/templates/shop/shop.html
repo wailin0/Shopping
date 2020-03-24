@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
@@ -12,28 +13,88 @@
 	<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	<script src="/js/datatable.js"></script>
 </head>
+=======
+<html ng-app=ShopApp>
+   <head>
+      <title>The jQuery Example</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
+    <script src="./js/datatable.js"></script>
+    
+  
+  <!--  for hal rest  useless now  -->
+   <!--    <script type = "text/javascript" language = "javascript">
+         $(document).ready(function() {
+>>>>>>> parent of 3243704... removed Spring Hal REST and added Angularjs for JSON manipulation
 
-<body>
-	<h1>Product Table</h1>
-	<table id="shopTable" class="display">
+            	$.getJSON( "/api/products", function( data ) {
+          			
+					for(x in data._embedded.products){
+						
+				$('table').append("<tr><td>"+data._embedded.products[x].name+"</td>"+
+						"<td>"+data._embedded.products[x].price+"</td>"+
+						"<td>"+data._embedded.products[x].category+"</td>"+
+						"<td>"+data._embedded.products[x].info+"</td>"+
+						"<tr/>");
+					}
+            }); 
+         });    
+      </script> -->
       
-       <!-- Header Table -->
-       <thead>
+   </head>
+	
+ <body> 
+ <div class="container">
+ 	<div ng-controller="ProductsController">
+
+              <label for="search">items per page:</label>
+    
+ 
+ 
+ 
+   
+    <table>
+        <tr>
+            <td align="right">Search :</td>
+            <td><input ng-model="search" /></td>
+        </tr>           
+        <tr>
+            <td align="right">Search By :</td>
+            <td>
+                <select ng-model="select">
+                    <option value="" selected>All</option>
+                    <option value="rpg">rpg</option>
+                    <option value="mmo">mmo</option>
+                    <option value="action">action</option>
+                </select>   
+            </td>
+        </tr>
+    </table>
+    <hr>
+ 
+ 
+ 
+ 
+ <input ng-model="category">
+ 
+
+        <table border="1">
             <tr>
-				<th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Info</th>
+                <th>Name</th>
+                <th>price</th>
+                <th>category</th>
+                <th>info</th>
             </tr>
-        </thead>
-        <!-- Footer Table -->
-        <tfoot>
-            <tr>
-				<th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Info</th>
+            <tr dir-paginate="product in products | itemsPerPage: 5| filter:{category:select} | filter:{name:search}" current-page="currentPage">
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.info}}</td>                
             </tr>
+<<<<<<< HEAD
         </tfoot>
     </table>
     
@@ -99,4 +160,22 @@
       <input type = "button" id = "driver" value = "Load Data" />
    </body>
 >>>>>>> parent of 5ad392e... removed Spring Hal REST and added Angularjs for JSON manipulation
+=======
+        </table>
+        
+        
+        </div>
+        
+        <div ng-controller="PagingController" class="other-controller">
+          <div class="text-center">
+          <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+          </div>
+        </div>
+        
+        
+        </div>
+        
+  
+  </body>
+>>>>>>> parent of 3243704... removed Spring Hal REST and added Angularjs for JSON manipulation
 </html>
