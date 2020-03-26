@@ -19,18 +19,20 @@ public class ShopRestController {
 	@Autowired
 	private ProductRepository productRepo;
 	
+	
+	//for getting all products
 	@GetMapping("/rest/products")
 	public List<Product> getAllProducts() {
 		return productRepo.findAll();
 	}
 	
-	
+	//for sorting products by category
 	@GetMapping("/rest/products/{category}")
 	public List<Product> findByCategory(@PathVariable String category) {
 		return productRepo.findByCategoryContainingIgnoreCase(category);
 	}
 	
-	
+	//for saving products
 	@PostMapping("/rest/products")
 	public void saveProducts(@RequestBody Product product){
 		 productRepo.save(product);

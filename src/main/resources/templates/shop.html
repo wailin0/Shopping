@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html ng-app=ShopApp>
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
@@ -22,51 +23,19 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+    <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
+    <script src="js/datatable.js"></script>
+ 
 </head>
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+<body ng-controller="ProductsController">
+   
+   
 
     <!-- Header Section Begin -->
     <header class="header-section">
-        <div class="header-top">
-            <div class="container">
-                <div class="ht-left">
-                    <div class="mail-service">
-                        <i class=" fa fa-envelope"></i>
-                        hello.colorlib@gmail.com
-                    </div>
-                    <div class="phone-service">
-                        <i class=" fa fa-phone"></i>
-                        +65 11.188.888
-                    </div>
-                </div>
-                <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                    <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">Bangla</option>
-                            <option value='yt' data-image="img/flag.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="img/flag.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">Bangla</option>
-                        </select>
-                    </div>
-                    <div class="top-social">
-                        <a href="#"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div class="container">
             <div class="inner-header">
                 <div class="row">
@@ -79,9 +48,20 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                            <button type="button" class="category-btn">All Categories</button>
+                            
+                            
+<!-- category sorting -->   <select ng-model="selectCategory" ng-change="select ()"  class="category-btn">
+			                    <option value="" selected>All Genre</option>
+			                    <option value="rpg">rpg</option>
+			                    <option value="mmo">mmo</option>
+			                    <option value="action">action</option>
+			                    <option value="indie">indie</option>
+			                    <option value="shooter">shooter</option>
+			                    <option value="2d">platformer</option>
+			                 </select>  
+                        
                             <form action="#" class="input-group">
-                                <input type="text" placeholder="What do you need?">
+<!-- searching here -->      <input type="text" placeholder="What do you need?" ng-model="search">
                                 <button type="button"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -162,28 +142,13 @@
                         </ul>
                     </div>
                 </div>
-                <nav class="nav-menu mobile-menu">
+                     <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
-                            </ul>
+                        <li><a href="/home">Home</a></li>
+                        <li class="active"><a href="/shop">Shop</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/faq">Faq</a></li>
+                        <li><a href="/user/account">Account</a>
                         </li>
                     </ul>
                 </nav>
@@ -200,7 +165,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>FAQs</span>
+                        <span>Shop</span>
                     </div>
                 </div>
             </div>
@@ -208,65 +173,121 @@
     </div>
     <!-- Breadcrumb Section Begin -->
 
-    <!-- Faq Section Begin -->
-    <div class="faq-section spad">
+    <!-- Product Shop Section Begin -->
+    <section class="product-shop spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="faq-accordin">
-                        <div class="accordion" id="accordionExample">
-                            <div class="card">
-                                <div class="card-heading active">
-                                    <a class="active" data-toggle="collapse" data-target="#collapseOne">
-                                        Is There Anything I Should Bring?
-                                    </a>
-                                </div>
-                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseTwo">
-                                        Where Can I Find Market Research Reports?
-                                    </a>
-                                </div>
-                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
-                                    </div>
+                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Publisher</h4>
+                        <ul class="filter-catagories">
+                            <li><a href="#">EA</a></li>
+                            <li><a href="#">Ubisoft</a></li>
+                            <li><a href="#">Microsoft</a></li>
+                            <li><a href="#">CD Projext Red</a></li>
+                            <li><a href="#">Bethedsa</a></li>
+                        </ul>
+                    </div>
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Price</h4>
+                        <div class="filter-range-wrap">
+                            <div class="range-slider">
+                                <div class="price-input">
+                                    <input type="text" id="minamount">
+                                    <input type="text" id="maxamount">
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseThree">
-                                        Where Can I Find The Wall Street Journal?
-                                    </a>
-                                </div>
-                                <div id="collapseThree" class="collapse" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat.</p>
-                                    </div>
+                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                data-min="33" data-max="98">
+                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                            </div>
+                        </div>
+                        <a href="#" class="filter-btn">Filter</a>
+                    </div>
+            
+                    <div class="filter-widget">
+                        <h4 class="fw-title">Tags</h4>
+                        <div class="fw-tags">
+                            <a href="#">Fast pace</a>
+                            <a href="#">FPS</a>
+                            <a href="#">Overrated</a>
+                            <a href="#">Boring</a>
+                            <a href="#">Walking Simulator</a>
+                            <a href="#">Hentai</a>
+                            <a href="#">Trash</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="product-show-option">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7">
+                                <div class="select-option">
+                                    <select class="sorting">
+                                        <option value="">Sorted by New Released</option>
+                                    </select>
+                                    <select class="p-show">
+                                        <option value="">Show:</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    
+                    
+<!-- paging here --> 	 <div ng-controller="PagingController" >
+			          		<div class="text-center">
+			        		  <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+			       	  	 	</div>
+			      		 </div>
+                    
+                    
+   
+   <!-- products looping start here  -->
+       
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-5" dir-paginate="product in products | itemsPerPage: 9 | filter:{name:search}" current-page="currentPage">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="img/products/product-1.jpg" alt="">
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="/product?id={{product.id}}">+ Quick View</a></li>
+                                          
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">{{product.category}}</div>
+                                        <a href="#">
+                                            <h5>{{product.name}}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            ${{product.price}}
+                                        </div>
+                                    </div>
+                                </div>
+                         	 </div>
+               			 </div> 
+   <!-- products looping end here  -->            
+      
+      
+      <!-- paging here --> 	 <div ng-controller="PagingController" >
+			          		<div class="text-center">
+			        		  <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls>
+			       	  	 	</div>
+			      		 </div>
+                              
+                
+                
             </div>
         </div>
-    </div>
-    <!-- Faq Section End -->
+    </section>
+    <!-- Product Shop Section End -->
 
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">

@@ -13,14 +13,13 @@ public class HomeController {
 	
     @GetMapping("/shop")
     public String store(){
-        return "shop/shop";
+        return "shop";
     }
     
-    
-    
-    
-    
-    
+    @GetMapping("/product")
+    public String product(){
+        return "product";
+    }
     
     
     
