@@ -3,12 +3,19 @@
 package com.wlh.model;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.wlh.model.Order;
 
 
 @Entity
@@ -29,7 +36,11 @@ public class Users {
 		private boolean enabled;
 		private String role;
 		
-
+		@OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
+		private ShoppingCart shoppingCart;
+		
+		@OneToMany(mappedBy = "users")
+		private List<Order> orderList;
 		
 		
 		public boolean isEnabled() {
@@ -86,5 +97,21 @@ public class Users {
 
 		public void setRole(String role) {
 			this.role = role;
+		}
+		
+		public ShoppingCart getShoppingCart() {
+			return shoppingCart;
+		}
+
+		public void setShoppingCart(ShoppingCart shoppingCart) {
+			this.shoppingCart = shoppingCart;
+		}
+
+		public List<Order> getOrderList() {
+			return orderList;
+		}
+
+		public void setOrderList(List<Order> orderList) {
+			this.orderList = orderList;
 		}
 }

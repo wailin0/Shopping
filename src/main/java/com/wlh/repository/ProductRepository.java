@@ -10,10 +10,11 @@ import com.wlh.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-	//ingore case equal to "like &search&" in sql
+	//Ignore case equal to "like &search&" in sql
 	List<Product> findByCategoryContainingIgnoreCase(String category);
 
 	List<Product> findByPrice(Double price);
-	
+
+	Product findOne(Long id);
 
 }
