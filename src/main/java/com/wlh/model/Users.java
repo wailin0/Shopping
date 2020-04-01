@@ -36,12 +36,7 @@ public class Users {
 		private boolean enabled;
 		private String role;
 		
-		@OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
-		private ShoppingCart shoppingCart;
-		
-		@OneToMany(mappedBy = "users")
-		private List<Order> orderList;
-		
+
 		
 		public boolean isEnabled() {
 			return enabled;
@@ -99,19 +94,5 @@ public class Users {
 			this.role = role;
 		}
 		
-		public ShoppingCart getShoppingCart() {
-			return shoppingCart;
-		}
 
-		public void setShoppingCart(ShoppingCart shoppingCart) {
-			this.shoppingCart = shoppingCart;
-		}
-
-		public List<Order> getOrderList() {
-			return orderList;
-		}
-
-		public void setOrderList(List<Order> orderList) {
-			this.orderList = orderList;
-		}
 }

@@ -16,10 +16,6 @@ public class HomeController {
         return "shop";
     }
     
-    @GetMapping("/product")
-    public String product(){
-        return "product";
-    }
     
     
     
