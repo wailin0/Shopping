@@ -3,6 +3,6 @@ select * from roles;
 
 select * from token;
 
-insert into users(username,email,password,phone,enabled) value("wai","w@w.w","wwwwwwwwww","056526",true)
+  1 2020-04-02 20:08:06.0 0be1742c-d6b3-4af6-8698-476f715ce427       1
 
-  1 2020-03-16 21:42:19.0 00883605-c500-4d27-a45d-b7f38978898a       1
+    1 2020-04-03 18:39:33.0 b05420c6-b1f2-4f50-90de-fe22332e77a8       1

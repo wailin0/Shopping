@@ -17,7 +17,6 @@ import com.wlh.model.Users;
 import com.wlh.repository.UserRepository;
 
 @RestController
-@CrossOrigin("*")
 public class UserRestController {
 	
 	@Autowired

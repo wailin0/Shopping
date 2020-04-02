@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,7 +21,6 @@ public class Product {
 	private Double price;
 	private String category;
 	private String info;
-	
 	
 	public String getName() {
 		return name;

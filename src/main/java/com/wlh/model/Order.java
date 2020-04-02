@@ -1,5 +1,8 @@
 package com.wlh.model;
 
+
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -12,38 +15,30 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
-@Table(name = "orders")
+@Table(name="user_order")
 public class Order {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date orderDate;
 	private String orderStatus;
-	private Double orderPrice;
+	private BigDecimal orderTotal;
 	
+	@OneToMany(mappedBy = "order", cascade=CascadeType.ALL )
+	private List<CartItem> cartItemList;
 	
+
 	@ManyToOne
-	private Users users;
-	
+	private Users user;
+
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-	public Users getUsers() {
-		return users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 
 	public Date getOrderDate() {
@@ -54,6 +49,7 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
+
 	public String getOrderStatus() {
 		return orderStatus;
 	}
@@ -62,13 +58,25 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
-	public Double getOrderPrice() {
-		return orderPrice;
+	public BigDecimal getOrderTotal() {
+		return orderTotal;
 	}
 
-	public void setOrderPrice(Double orderPrice) {
-		this.orderPrice = orderPrice;
+	public void setOrderTotal(BigDecimal orderTotal) {
+		this.orderTotal = orderTotal;
 	}
 
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
+	}
 
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	
+	
 }

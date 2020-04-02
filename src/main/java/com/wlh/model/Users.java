@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.wlh.model.Order;
-
 
 @Entity
 @Table(name="users")
@@ -36,7 +34,9 @@ public class Users {
 		private boolean enabled;
 		private String role;
 		
-
+		@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+		private ShoppingCart shoppingCart;
+		
 		
 		public boolean isEnabled() {
 			return enabled;
@@ -93,6 +93,13 @@ public class Users {
 		public void setRole(String role) {
 			this.role = role;
 		}
-		
+
+		public ShoppingCart getShoppingCart() {
+			return shoppingCart;
+		}
+
+		public void setShoppingCart(ShoppingCart shoppingCart) {
+			this.shoppingCart = shoppingCart;
+		}
 
 }

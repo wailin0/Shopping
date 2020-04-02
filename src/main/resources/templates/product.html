@@ -163,14 +163,6 @@
                     <ul>
                         <li><a href="./index.html">Home</a></li>
                         <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
@@ -356,7 +348,8 @@
                             </div>
                         </div>
                         
-                        <form action="addProduct" method="post">
+                        <form action="/addItem" method="post">
+                			<input hidden="hidden" th:field="*{product.id}" />
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
@@ -376,13 +369,10 @@
                                     <h4 th:text="${product.price}"></h4>
                                 </div>
                                
-                               
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
+                      
+                                    
                                     <button type="submit" class="primary-btn pd-cart">Add To Cart</button>
-                                </div>
+                              
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
                                     <li><span>TAGS</span>: Clothing, T-shirt, Woman</li>

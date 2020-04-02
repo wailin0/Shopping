@@ -1,5 +1,8 @@
 package com.wlh.model;
 
+
+
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,30 +11,26 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ShoppingCart {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Integer quantity;
-	private Double grandTotal;
+	private BigDecimal GrandTotal;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "order_id")
-	private Order order;
+	@OneToMany(mappedBy="shoppingCart", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JsonIgnore
+	private List<CartItem> cartItemList;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_id")
-	private Product product;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Users user;
 
-
-	
 	public Long getId() {
 		return id;
 	}
@@ -40,43 +39,29 @@ public class ShoppingCart {
 		this.id = id;
 	}
 
-	public Double getGrandTotal() {
-		return grandTotal;
+	public BigDecimal getGrandTotal() {
+		return GrandTotal;
 	}
 
-	public void setGrandTotal(Double grandTotal) {
-		this.grandTotal = grandTotal;
+	public void setGrandTotal(BigDecimal grandTotal) {
+		GrandTotal = grandTotal;
 	}
 
-	
-
-
-	public Integer getQuantity() {
-		return quantity;
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Users getUser() {
+		return user;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setUser(Users user) {
+		this.user = user;
 	}
 	
-
 	
-	
-
 }
