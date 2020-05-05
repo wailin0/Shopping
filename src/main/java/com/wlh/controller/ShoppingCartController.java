@@ -75,7 +75,7 @@ public class ShoppingCartController {
 			) {
 		Users user = userService.findByEmail(principal.getName());
 		
-		//if user wasnt yet, login redirect to login page
+		//if user not login redirect to login page
 		if(user == null) {
 			return "redirect:/login";
 		}
@@ -83,7 +83,7 @@ public class ShoppingCartController {
 		product = productService.findOne(product.getId());
 		
 
-		CartItem cartItem = cartItemService.addProductToCartItem(product, user);
+		cartItemService.addProductToCartItem(product, user);
 		model.addAttribute("addCdSuccess", true);
 		
 		return "redirect:/cart";

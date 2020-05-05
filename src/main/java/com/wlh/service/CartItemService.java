@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 import com.wlh.model.CartItem;
 import com.wlh.model.Order;
 import com.wlh.model.Product;
-import com.wlh.model.ProductToCartItem;
 import com.wlh.model.ShoppingCart;
 import com.wlh.model.Users;
 import com.wlh.repository.CartItemRepository;
-import com.wlh.repository.ProductToCartItemRepository;
 
 
 
@@ -25,8 +23,6 @@ public class CartItemService {
 	@Autowired
 	private CartItemRepository cartItemRepository;
 	
-	@Autowired
-	private ProductToCartItemRepository productToCartItemRepository;
 	
 	public List<CartItem> findByShoppingCart(ShoppingCart shoppingCart) {
 		return cartItemRepository.findByShoppingCart(shoppingCart);
@@ -61,11 +57,7 @@ public class CartItemService {
 		
 		cartItem = cartItemRepository.save(cartItem);
 		
-		ProductToCartItem productToCartItem = new ProductToCartItem();
-		productToCartItem.setProduct(product);
-		productToCartItem.setCartItem(cartItem);
-		productToCartItemRepository.save(productToCartItem);
-		
+	
 		return cartItem;
 		
 	}
@@ -75,8 +67,7 @@ public class CartItemService {
 	}
 
 	public void removeCartItem(Long id) {
-		ProductToCartItemRepository.deleteByCartItem(findById(id));
-		cartItemRepository.delete(findById(id));
+		cartItemRepository.deleteById(id);
 	}
 	
 	public CartItem save(CartItem cartItem) {
